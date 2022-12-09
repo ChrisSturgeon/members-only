@@ -1,0 +1,23 @@
+extends layout 
+
+block content 
+
+  h1 Register New Account 
+
+  form(action='' method="POST")
+    div(class="form-layout")
+      label(for="username") Username 
+      input(type="text" name="username" required=true)
+      label(for="pasword1") Password
+      input(name="password1" type="password" required=true)
+      label(for="pasword2") Confirm password
+      input(name="password2" type="password" required=true)
+    button(type="submit") Create Account
+
+  if errors
+    ul 
+      for error in errors
+        li!= error.msg
+
+  if usernameError
+    p Error! Username is already taken. Please choose a different username.
