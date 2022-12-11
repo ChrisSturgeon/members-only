@@ -9,17 +9,30 @@ exports.login_get = (req, res, next) => {
   res.render('loginForm');
 };
 
-// exports.login_post = (req, res, next) => {
-//   passport.authenticate('local', {
-//     successRedirect: '/',
-//     failureRedirect: '/',
-//   });
-// };
+// Login form on POST
+exports.login_post = (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/',
+  })(req, res, next);
+};
 
+// Logout on GET
+exports.logout_get = (req, res, next) => {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/');
+  });
+};
+
+// New user form on GET
 exports.user_create_get = (req, res, next) => {
   res.render('newUserForm');
 };
 
+// New user form on POST
 exports.user_create_post = [
   // Validate and sanitise the input data
   body('username', 'Username required').trim().isLength({ min: 1 }).escape(),

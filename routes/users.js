@@ -12,14 +12,10 @@ router.get('/', function (req, res, next) {
 // Login form on GET
 router.get('/login', user_controller.login_get);
 
-// Login form on POST
-router.post(
-  '/login',
-  passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/',
-  })
-);
+router.post('/login', user_controller.login_post);
+
+// Log out user on GET
+router.get('/logout', user_controller.logout_get);
 
 // New User form on GET
 router.get('/new', user_controller.user_create_get);
