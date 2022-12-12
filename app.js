@@ -22,7 +22,9 @@ const usersRouter = require('./routes/users');
 const messagesRouter = require('./routes/messages');
 
 // MongoDB
+
 const mongoDb = process.env.MONGODB_URI;
+mongoose.set('strictQuery', true);
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'mongo connection error'));
@@ -43,7 +45,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(compression());
 app.use(helmet());
 
-// Passpor Authentication middleware
+// Passport Authentication middleware
 app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
 passport.use(
   new LocalStrategy((username, password, done) => {
@@ -74,6 +76,7 @@ passport.deserializeUser(function (id, done) {
     done(err, user);
   });
 });
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));

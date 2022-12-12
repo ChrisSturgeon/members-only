@@ -138,6 +138,18 @@ table {
   --red: #ed553b;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 1px);
+  background-color: rgb(202, 228, 188);
+}
+
+main {
+  flex: 1;
+  background-color: #f6d55c;
+}
+
 nav.top-nav {
   display: flex;
   justify-content: space-between;
@@ -146,9 +158,10 @@ nav.top-nav {
   padding: 1em;
 }
 
-nav.top-nav h1 {
+nav.top-nav .nav-company {
   font-size: 2rem;
   color: white;
+  text-decoration: none;
 }
 
 nav.top-nav ul {
@@ -171,4 +184,42 @@ main {
   flex-direction: column;
   max-width: 300px;
   gap: 3px;
+}
+
+.messages-main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  padding: 1em;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  background-color: pink;
+  width: clamp(200px, 100%, 700px);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em;
+  background-color: green;
+}
+
+.header-user {
+  font-style: italic;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 400px) {
+  .messages-main {
+    padding: 1em 0.25em;
+  }
 }

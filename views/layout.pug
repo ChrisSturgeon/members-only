@@ -9,10 +9,12 @@ html(lang='en')
   body
 
     nav(class="top-nav")
-      h1 Psst!
+      a(href="/messages/all" class="nav-company") Psst!
         
       ul
-        if user 
+        li
+          a(href="/messages/all") All Messages
+        if user
           li
             a(href="/messages/new") New Message
           li 
@@ -24,3 +26,6 @@ html(lang='en')
             a(href="/users/new") New User
     main
       block content
+
+  footer
+    p I'm the footer

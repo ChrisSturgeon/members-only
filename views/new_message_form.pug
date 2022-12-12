@@ -10,3 +10,9 @@ block content
       label(for="content") Post Content
       textarea(type="text" name="content" required=true)
       button(type="submit") Post Message
+
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

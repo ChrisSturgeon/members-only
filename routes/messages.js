@@ -8,4 +8,7 @@ router.get('/new', message_controller.new_message_get);
 // New message form on POST
 router.post('/new', message_controller.new_message_post);
 
+// All messages on GET
+router.get('/all', message_controller.all_messages);
+
 module.exports = router;

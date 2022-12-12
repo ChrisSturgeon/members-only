@@ -1,0 +1,20 @@
+extends layout 
+
+block content 
+
+  div(class="messages-main")
+    each message in messages 
+      div(class="message")
+        div(class="header")
+          div(class="header-left")
+            h1(class="title")= message.title
+            div(class="header-user")= message.userString
+          div(class="header-right")
+            p= message.posted_formatted
+        p= message.content
+
+  if user
+    p= user.username
+
+  else 
+    p not logged in
