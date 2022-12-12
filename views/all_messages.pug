@@ -2,19 +2,25 @@ extends layout
 
 block content 
 
-  div(class="messages-main")
+  div(class="messages-wrapper")
     each message in messages 
       div(class="message")
         div(class="header")
           div(class="header-left")
             h1(class="title")= message.title
-            div(class="header-user")= message.userString
+            div(class="header-user")= user ? message.userString : 'Anonymous'
           div(class="header-right")
             p= message.posted_formatted
-        p= message.content
 
-  if user
-    p= user.username
+            if user
+              if user.admin || user._id.toString() == message.userID.toString()
+                form(action="/messages/delete" method="POST")
+                  input(type="text" hidden=true name="messageID" value=message._id)
+                  button(type="submit" class="btn-delete") Delete                
 
-  else 
-    p not logged in
+        p(class="message-content") !{message.content}
+
+
+
+
+

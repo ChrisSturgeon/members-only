@@ -56,6 +56,41 @@ exports.new_message_post = [
   },
 ];
 
+exports.delete_message_post = (req, res, next) => {
+  console.log(req.body.messageID);
+  res.redirect('/');
+};
+
+exports.delete_message_post = [
+  body('messageID', 'Message ID required').trim().escape().isLength({ min: 1 }),
+
+  (req, res, next) => {
+    Message.findById(req.body.messageID).exec((err, foundMessage) => {
+      if (err) {
+        return next(err);
+      } else {
+        if (
+          // Allow user to delete post if they are admin or original poster
+          req.user.admin === true ||
+          req.user._id.toString() === foundMessage.userID.toString()
+        ) {
+          Message.findByIdAndRemove(req.body.messageID, (err) => {
+            if (err) {
+              return next(err);
+            } else {
+              // After deletion redirect to homepage
+              res.redirect('/');
+            }
+          });
+        } else {
+          // Redirect to all message if no authority to delete
+          res.redirect('/');
+        }
+      }
+    });
+  },
+];
+
 exports.all_messages = (req, res, next) => {
   Message.find()
     .sort({ posted: -1 })

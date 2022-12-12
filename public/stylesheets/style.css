@@ -130,6 +130,38 @@ table {
 
 /* My CSS */
 
+@font-face {
+  font-family: 'Assistant';
+  src: url('../fonts/Assistant-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Assistant';
+  src: url('../fonts/Assistant-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Assistant';
+  src: url('../fonts/Assistant-ExtraBold.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+html,
+body,
+div,
+span,
+a,
+li,
+td,
+th {
+  font-family: 'Assistant', sans-serif;
+}
+
 :root {
   --navy: #173f5f;
   --light-blue: #20639b;
@@ -142,24 +174,30 @@ body {
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 1px);
-  background-color: rgb(202, 228, 188);
+  background-color: white;
 }
 
 main {
   flex: 1;
-  background-color: #f6d55c;
+  background-color: white;
+}
+
+nav {
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  z-index: 99;
 }
 
 nav.top-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--navy);
+  background-color: var(--light-blue);
   padding: 1em;
 }
 
 nav.top-nav .nav-company {
   font-size: 2rem;
+  font-weight: 900;
   color: white;
   text-decoration: none;
 }
@@ -171,22 +209,48 @@ nav.top-nav ul {
 }
 
 nav a {
+  text-decoration: none;
   color: white;
+}
+
+nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 main {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .form-layout {
   display: flex;
   flex-direction: column;
-  max-width: 300px;
   gap: 3px;
 }
 
-.messages-main {
+textarea {
+  min-height: 300px;
+}
+
+.form-login-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: clamp(200px, 100%, 300px);
+  background-color: var(--light-blue);
+  margin-top: 1em;
+}
+
+.form-login-wrapper h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  background-color: var(--navy);
+  color: white;
+  padding: 0.25em 0.5em;
+}
+
+.messages-wrapper {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -198,28 +262,72 @@ main {
 .message {
   display: flex;
   flex-direction: column;
-  background-color: pink;
+  background-color: var(--light-blue);
   width: clamp(200px, 100%, 700px);
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 }
 
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 0.5em;
-  background-color: green;
+  padding: 1em;
+  background-color: var(--navy);
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.header-left,
+.header-right {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.header-left .title {
+  font-weight: bold;
+}
+
+.header-right {
+  align-items: flex-end;
 }
 
 .header-user {
   font-style: italic;
 }
 
-.title {
+.header-right a,
+.header-right a:visited {
+  color: var(--yellow);
+  text-decoration: none;
+}
+
+.btn-delete {
+  background-color: transparent;
+  color: var(--yellow);
+  border: none;
+}
+
+.btn-delete:hover {
+  background-color: var(--yellow);
+  color: var(--navy);
+  border-radius: 3px;
+}
+
+.header-right a .title {
   font-size: 1.2rem;
   font-weight: bold;
 }
 
+.message-content {
+  white-space: pre-line;
+  padding: 1em 1.5em;
+  line-height: 1.6;
+}
+
 @media only screen and (max-width: 400px) {
-  .messages-main {
+  .messages-wrapper {
     padding: 1em 0.25em;
   }
 }

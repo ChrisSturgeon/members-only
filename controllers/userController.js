@@ -3,17 +3,25 @@ const { body, validationResult, check } = require('express-validator');
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const e = require('express');
 
 // Login form on GET
 exports.login_get = (req, res, next) => {
-  res.render('loginForm');
+  console.log(req.query.error);
+  if (req.query.error == 1) {
+    res.render('loginForm', {
+      loginFaliure: true,
+    });
+  } else {
+    res.render('loginForm');
+  }
 };
 
 // Login form on POST
 exports.login_post = (req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/',
+    failureRedirect: '/users/login?error=1',
   })(req, res, next);
 };
 

@@ -1,13 +1,26 @@
 extends layout 
 
 block content 
-  h1 Login 
+  div(class="form-login-wrapper")
 
-  form(action="" method="POST") 
-    div(class="form-layout")
-      label(for="username") Username
-      input(type="text" name='username')
-      label(for="password" name="password") Password
-      input(type="password" name="password")
+
+
+    h1 Login
+
+    form(action="" method="POST") 
+      div(class="form-layout")
+        label(for="username") Username
+        input(type="text" name='username')
+        label(for="password" name="password") Password
+        input(type="password" name="password")
+      
+      button(type="submit") Login
+
     
-    button(type="submit") Login
+    if errors
+      ul
+        for error in errors
+          li!= error.msg
+
+    if loginFaliure
+      p Login failed. Please check your credentials and try again
