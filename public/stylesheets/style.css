@@ -167,7 +167,6 @@ th {
   --light-blue: #20639b;
   --teal: #68a0a8;
   --yellow: #f6d55c;
-  --red: #ed553b;
 }
 
 body {
@@ -306,6 +305,16 @@ textarea {
   background-color: var(--navy);
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
+}
+
+.success {
+  margin-top: 1em;
+  font-size: 1.2rem;
+}
+
+.success a,
+.success a:visited {
+  color: black;
 }
 
 .header-left,

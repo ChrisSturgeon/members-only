@@ -22,7 +22,6 @@ const usersRouter = require('./routes/users');
 const messagesRouter = require('./routes/messages');
 
 // MongoDB
-
 const mongoDb = process.env.MONGODB_URI;
 mongoose.set('strictQuery', true);
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });

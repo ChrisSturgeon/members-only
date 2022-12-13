@@ -1,7 +1,5 @@
-const async = require('async');
 const { body, validationResult, check } = require('express-validator');
 const Message = require('../models/message');
-const user = require('../models/user');
 
 // Displays new message form
 exports.new_message_get = (req, res, next) => {
@@ -56,11 +54,7 @@ exports.new_message_post = [
   },
 ];
 
-exports.delete_message_post = (req, res, next) => {
-  console.log(req.body.messageID);
-  res.redirect('/');
-};
-
+// Deletes message from database
 exports.delete_message_post = [
   body('messageID', 'Message ID required').trim().escape().isLength({ min: 1 }),
 
@@ -91,6 +85,7 @@ exports.delete_message_post = [
   },
 ];
 
+// Displays all messages with most recent first
 exports.all_messages = (req, res, next) => {
   Message.find()
     .sort({ posted: -1 })

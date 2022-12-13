@@ -1,9 +1,7 @@
-const async = require('async');
 const { body, validationResult, check } = require('express-validator');
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
-const e = require('express');
 
 // Login form on GET
 exports.login_get = (req, res, next) => {
@@ -81,13 +79,12 @@ exports.user_create_post = [
                 username: req.body.username,
                 password: hashedPassword,
                 joined: new Date(),
-                posts: [],
                 admin: false,
               }).save((err) => {
                 if (err) {
                   return next(err);
                 }
-                res.redirect('/');
+                res.redirect('/users/success');
               });
             });
           }
@@ -96,3 +93,8 @@ exports.user_create_post = [
     }
   },
 ];
+
+// Displays success message and login  prompt
+exports.register_success = (req, res, next) => {
+  res.render('success');
+};
