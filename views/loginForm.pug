@@ -2,9 +2,6 @@ extends layout
 
 block content 
   div(class="form-login-wrapper")
-
-
-
     h1 Login
 
     form(action="" method="POST") 
@@ -12,15 +9,13 @@ block content
         label(for="username") Username
         input(type="text" name='username')
         label(for="password" name="password") Password
-        input(type="password" name="password")
-      
-      button(type="submit") Login
+        input(type="password" name="password") 
+        button(type="submit") Login
 
+        if loginFaliure
+          p(class="faliure-msg") Login failed. Please check your credentials and try again
     
     if errors
       ul
         for error in errors
           li!= error.msg
-
-    if loginFaliure
-      p Login failed. Please check your credentials and try again

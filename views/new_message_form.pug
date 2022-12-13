@@ -1,18 +1,18 @@
 extends layout 
 
 block content
-  h1 Post a new message
+  div(class="form-login-wrapper")
+    h1 Post a new message
 
-  form(action='' method="POST")
-    div(class="form-layout")
-      label(for="title") Post Title
-      input(type="text" name="title" required=true)
-      label(for="content") Post Content
-      textarea(type="text" name="content" required=true)
-      button(type="submit") Post Message
+    form(action='' method="POST")
+      div(class="form-layout")
+        label(for="title") Post Title
+        input(type="text" name="title" required=true)
+        label(for="content") Post Content
+        textarea(type="text" name="content" required=true)
+        button(type="submit") Post Message
 
-
-  if errors
-    ul
-      for error in errors
-        li!= error.msg
+    if errors
+      ul
+        for error in errors
+          li!= error.msg
